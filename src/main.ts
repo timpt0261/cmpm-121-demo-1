@@ -10,9 +10,24 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
-const clicker = document.createElement("button");
+const button = document.createElement("button");
 
-clicker.title = "clicker";
-clicker.innerHTML = "💧";
+button.title = "button";
+button.innerHTML = "💧";
+app.append(button);
 
-app.append(clicker);
+const divider = document.createElement("div");
+divider.id = "counter";
+setupCounter(divider, button);
+
+app.append(divider);
+
+function setupCounter(divider: HTMLDivElement, button: HTMLButtonElement) {
+  let counter = 0;
+  const setCounter = (count: number) => {
+    counter = count;
+    divider.innerHTML = `${counter} waahs`;
+  };
+  button.addEventListener("click", () => setCounter(counter + 1));
+  setCounter(0);
+}
