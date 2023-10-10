@@ -18,16 +18,15 @@ app.append(button);
 
 const divider = document.createElement("div");
 divider.id = "counter";
-setupCounter(divider, button);
+setupCounter(divider);
 
 app.append(divider);
 
-function setupCounter(divider: HTMLDivElement, button: HTMLButtonElement) {
+function setupCounter(divider: HTMLDivElement) {
   let counter = 0;
-  const setCounter = (count: number) => {
-    counter = count;
+  const setCounter = () => {
     divider.innerHTML = `${counter} waahs`;
+    counter++;
   };
-  button.addEventListener("click", () => setCounter(counter + 1));
-  setCounter(0);
+  setInterval(setCounter, 1000);
 }
