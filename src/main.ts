@@ -18,15 +18,24 @@ app.append(button);
 
 const divider = document.createElement("div");
 divider.id = "counter";
-setupCounter(divider);
 
 app.append(divider);
 
-function setupCounter(divider: HTMLDivElement) {
-  let counter = 0;
-  const setCounter = () => {
-    divider.innerHTML = `${counter} waahs`;
+let counter = 0;
+let start: number | undefined = undefined;
+let progress: number | undefined = undefined;
+const updateDelay = 1 / 60; // 60 units per second
+
+function tick(timestamp: number) {
+  const diff = progress! - start!;
+  if (!start || diff >= updateDelay) {
+    start = timestamp / 1000;
+    divider.innerHTML = `${counter} Waves`;
     counter++;
-  };
-  setInterval(setCounter, 1000);
+  }
+  progress = timestamp / 1000;
+
+  requestAnimationFrame(tick);
 }
+
+requestAnimationFrame(tick);
