@@ -14,6 +14,7 @@ const button = document.createElement("button");
 
 button.title = "button";
 button.innerHTML = "💧";
+
 app.append(button);
 
 const divider = document.createElement("div");
@@ -21,17 +22,36 @@ divider.id = "counter";
 
 app.append(divider);
 
+const upgrade = document.createElement("button");
+upgrade.id = "upgrade";
+upgrade.innerHTML = "strengthen throw";
+upgrade.disabled = true;
+
+app.append(upgrade);
+
 let counter = 0;
 let start: number | undefined = undefined;
 let progress: number | undefined = undefined;
-const updateDelay = 1 / 60; // 60 units per second
+const updateDelay = Infinity; // modify to change frame rate
+
+button.addEventListener("click", () => {
+  console.log("Throw");
+  counter++;
+});
+
+upgrade.addEventListener("click", () => {
+  console.log("Strength");
+  counter -= 10;
+});
 
 function tick(timestamp: number) {
+  console.log(`Counter : ${counter}`);
+  upgrade.disabled = counter >= 10 ? false : true;
+
   const diff = progress! - start!;
-  if (!start || diff >= updateDelay) {
+  if (!start || diff != updateDelay) {
     start = timestamp / 1000;
     divider.innerHTML = `${counter} Waves`;
-    counter++;
   }
   progress = timestamp / 1000;
 
