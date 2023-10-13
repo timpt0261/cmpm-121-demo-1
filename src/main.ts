@@ -6,6 +6,11 @@ const gameName = "ripple";
 
 document.title = gameName;
 
+// const background = document.createElement("img");
+// background.src = "/img/striped_wave.jpg";
+
+// app.append(background);
+
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
@@ -13,7 +18,7 @@ app.append(header);
 const button = document.createElement("button");
 
 button.title = "button";
-button.innerHTML = "⛵";
+button.innerHTML = "💧";
 
 app.append(button);
 
@@ -106,18 +111,14 @@ function tick(timestamp: number) {
 
   console.log(` elapsed : ${elapsed}`);
   counter += growthRate * elapsed;
-  divider.innerHTML = `${counter.toFixed(3)} knots per hour`;
-  display_growth_rate.innerHTML = ` current growth rate ${growthRate.toFixed(
-    1,
-  )} at knots per hour `;
+  divider.innerHTML = `${Math.round(counter)} Ripple Counter`;
+  display_growth_rate.innerHTML = ` Droplet Impact ${growthRate.toFixed(1)}`;
 
-  upgrade_a.innerHTML = `Improve Hull ${cost_a.toFixed(
+  upgrade_a.innerHTML = ` 🪨 Pebble Toss  ${cost_a.toFixed(
     1,
   )} (${time_constant_a})`;
-  upgrade_b.innerHTML = `Improve Sail ${cost_b.toFixed(
-    1,
-  )} (${time_constant_b})`;
-  upgrade_c.innerHTML = `Improve MotorBoat ${cost_c.toFixed(
+  upgrade_b.innerHTML = ` 🚿 Shower ${cost_b.toFixed(1)} (${time_constant_b})`;
+  upgrade_c.innerHTML = ` 🌊 Tsunami Power ${cost_c.toFixed(
     1,
   )} (${time_constant_c})`;
 
