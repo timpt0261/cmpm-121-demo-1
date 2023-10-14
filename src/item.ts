@@ -34,7 +34,7 @@ class Upgrade implements Item {
 
   update(counter: number, growth_rate: number): number[] {
     console.log(`${this.msg_html}`);
-    counter -= this.constant;
+    counter -= this.cost;
     growth_rate += this.growth_rate;
     this.time_constant++;
     this.cost = this.calculate_cost(
@@ -47,18 +47,20 @@ class Upgrade implements Item {
   }
 
   display() {
-    this.button.innerHTML = `${this.msg_html} ${this.cost.toFixed(1)} (${
+    this.button.innerHTML = `${this.msg_html} ${Math.round(this.cost)}(${
       this.time_constant
-    })`;
+    })\n Increases the droplet impact at ${this.growth_rate.toFixed(1)} `;
   }
 
   disableButton(counter: number) {
-    this.button.disabled = counter >= this.constant ? false : true;
+    this.button.disabled = counter >= this.cost ? false : true;
   }
 }
 
 export const avilableItems: Upgrade[] = [
   new Upgrade("upgrade_a", "🪨 Pebble Toss", 10, 0.1),
-  new Upgrade("upgrade_b", "🚿 Shower", 100, 2.0),
-  new Upgrade("upgrade_c", "🌊 Tsunami Power", 1000, 50),
+  new Upgrade("upgrade_b", "🔫 Water Pistol", 100, 2.0),
+  new Upgrade("upgrade_c", "🚿 Shower", 150, 5.0),
+  new Upgrade("upgrade_d", "☔ Heavy Rain", 300, 10.0),
+  new Upgrade("upgrade_e", "🌊 Tsunami Power", 1000, 50),
 ];
